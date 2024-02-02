@@ -1,0 +1,5 @@
+.image-overlay {
+  background-image: url("../../../../assets/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

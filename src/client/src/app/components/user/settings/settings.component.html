@@ -1,0 +1,68 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Settings</h3>
+    <div class="card mb-3">
+      <h5 class="card-header bg-transparent">Newsletter Subscription</h5>
+      <div class="card-body">
+        <div *ngIf="isSubscribed" class="mb-3">
+          <p class="card-text text-success">
+            Your email address subscribed to newsletter!
+          </p>
+          <button
+            [swal]="{
+              title: 'Are You Sure?',
+              text: 'Are you sure you want to cancel newsletter subscription?',
+              icon: 'question',
+              showCancelButton: true
+            }"
+            (confirm)="unsubscribeNewsletter()"
+            type="submit"
+            class="btn btn-outline-danger"
+          >
+            Cancel your newsletter subscription
+          </button>
+        </div>
+        <div *ngIf="!isSubscribed" class="mb-3">
+          <p class="card-text text-warning">
+            Your email address not subscribed to newsletter!
+          </p>
+          <button
+            [swal]="{
+              title: 'Are You Sure?',
+              text: 'Are you sure you want to subscribe to newsletter?',
+              icon: 'question',
+              showCancelButton: true
+            }"
+            (confirm)="subscribeNewsletter()"
+            type="submit"
+            class="btn btn-success"
+          >
+            Subscribe Newsletter
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card border-danger mb-3">
+      <h5 class="card-header bg-transparent">Danger Zone</h5>
+      <div class="card-body">
+        <div class="mb-3">
+          <button
+            [swal]="{
+              title: 'Are You Sure?',
+              text: 'Are you sure you want to delete your account? This process cannot be undone!',
+              icon: 'question',
+              showCancelButton: true
+            }"
+            (confirm)="deleteAccount()"
+            type="submit"
+            class="btn btn-outline-danger"
+          >
+            Delete Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

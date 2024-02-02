@@ -1,0 +1,29 @@
+<div class="container text-center mt-5 pt-5">
+  <h2 class="display-4 mb-4 fw-bold pb-2 d-inline-block">Top Sellers</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div *ngFor="let product of products" class="col">
+      <div class="card h-100 shadow">
+        <a style="cursor: pointer">
+          <img
+            [routerLink]="['/product-detail', product.urlHandle]"
+            [src]="product.imageUrl"
+            class="card-img-top img-fluid mh-100 p-3"
+            alt="product-image"
+          />
+        </a>
+        <div class="card-body d-flex flex-column">
+          <h5
+            [routerLink]="['/product-detail', product.urlHandle]"
+            class="card-title mt-auto"
+            style="cursor: pointer"
+          >
+            {{ product.name }}
+          </h5>
+          <h6 class="text-warning">{{ product.price | currency }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

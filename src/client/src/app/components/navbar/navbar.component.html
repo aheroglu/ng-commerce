@@ -1,0 +1,226 @@
+<div class="container">
+  <nav
+    [class.bg-dark]="currentTheme === 'dark'"
+    [class.bg-white]="currentTheme === 'light'"
+    class="navbar navbar-expand-md fixed-top"
+  >
+    <div class="container pb-2 border-bottom">
+      <a [routerLink]="['/']" class="navbar-brand">NG-Commerce</a>
+
+      <!-- Navbar toggler for small screens -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-between"
+        id="navbarNav"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a
+              [routerLink]="['/home']"
+              routerLinkActive="active"
+              class="nav-link"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              [routerLink]="['/products']"
+              routerLinkActive="active"
+              class="nav-link"
+              >Products</a
+            >
+          </li>
+          <li class="nav-item dropdown" *ngIf="isLoggedIn() && isAdmin()">
+            <a
+              class="nav-link dropdown-toggle fw-semibold"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Admin Managament
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a
+                [routerLink]="['/admin/dashboard']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Dashboard</a
+              >
+              <hr class="m-1" />
+              <h6 class="dropdown-header">Product Operations</h6>
+              <a
+                [routerLink]="['/admin/categories']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Categories</a
+              >
+              <a
+                [routerLink]="['/admin/products']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Products</a
+              >
+              <a
+                [routerLink]="['/admin/reviews']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Reviews</a
+              >
+              <a
+                [routerLink]="['/admin/orders']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Orders</a
+              >
+              <hr class="m-1" />
+              <h6 class="dropdown-header">User Operations</h6>
+              <a
+                [routerLink]="['/admin/admins']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Admins</a
+              >
+              <a
+                [routerLink]="['/admin/members']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Members</a
+              >
+              <hr class="m-1" />
+              <h6 class="dropdown-header">Mail Operations</h6>
+              <a
+                [routerLink]="['/mail/mails']"
+                routerLinkActive="active"
+                class="dropdown-item"
+                >Mails Sent</a
+              >
+            </div>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center justify-content-between">
+          <button
+            type="button"
+            class="btn bg-body-secondary rounded-circle mx-2 p-2 lh-1"
+            (click)="changeThemeColor()"
+          >
+            <i class="bi bi-circle-half"></i>
+          </button>
+          <button
+            *ngIf="isLoggedIn() && !isAdmin()"
+            [class.btn-primary]="currentTheme === 'dark'"
+            [class.btn-outline-primary]="currentTheme === 'light'"
+            [routerLink]="['/cart']"
+            routerLinkActive="active"
+            class="btn btn-outline-primary me-2"
+            type="submit"
+          >
+            <i class="bi-cart-fill me-1"></i>
+            Cart
+            <span class="badge text-bg-warning ms-1 rounded-pill">{{
+              numberOfProduct
+            }}</span>
+          </button>
+          <a
+            *ngIf="!isLoggedIn()"
+            [routerLink]="['/login']"
+            class="btn btn-outline-primary me-2"
+            >Login</a
+          >
+          <a
+            *ngIf="!isLoggedIn()"
+            [routerLink]="['/signup']"
+            class="btn btn-primary"
+            >Sign-up</a
+          >
+          <div
+            class="dropdown text-end mx-2 float-end"
+            *ngIf="isLoggedIn()"
+            data-bs-popper="static"
+          >
+            <a
+              href="#"
+              class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+            >
+              <img
+                src="https://github.com/mdo.png"
+                alt="mdo"
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li>
+                <a
+                  [routerLink]="['/profile']"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="!isAdmin()"
+                  [routerLink]="['/orders']"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+                  >Orders</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="!isAdmin()"
+                  [routerLink]="['/evaluations']"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+                  >Evaluations</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="!isAdmin()"
+                  [routerLink]="['/favourites']"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+                  >Favourites</a
+                >
+              </li>
+              <li>
+                <a
+                  *ngIf="!isAdmin()"
+                  [routerLink]="['/settings']"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+                  >Settings</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <button (click)="signOut()" class="dropdown-item">
+                  Sign out
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

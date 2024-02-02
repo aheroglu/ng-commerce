@@ -1,0 +1,53 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom px-0">Add Category</h3>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="model.name"
+          name="name"
+          (keyup)="updateUrlHandle()"
+          (blur)="updateUrlHandle()"
+          type="text"
+          class="form-control form-control-lg"
+          id="name"
+          placeholder="Category name.."
+        />
+        <label for="name">Category Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="model.urlHandle"
+          name="urlHandle"
+          type="text"
+          class="form-control form-control-lg"
+          id="urlHandle"
+          placeholder="Category url handle.."
+          readonly
+        />
+        <label for="urlHandle">Category Url Handle</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          [(ngModel)]="model.description"
+          name="description"
+          class="form-control form-control-lg"
+          id="description"
+          placeholder="Category description.."
+          rows="10"
+          style="height: 100px;"
+        ></textarea>
+        <label for="description">Category Description</label>
+      </div>
+      <div class="row mb-3">
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

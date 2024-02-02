@@ -1,0 +1,103 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Orders History</h3>
+    <ng-container *ngIf="orders; else noOrders"></ng-container>
+    <div
+      *ngFor="
+        let order of orders | paginate : { itemsPerPage: 20, currentPage: p }
+      "
+      class="card mb-3"
+    >
+      <div class="card-header bg-body-tertiary">
+        <div class="row mx-2">
+          <div class="col-2 d-block fw-semibold">
+            Member
+            <span class="d-block fw-light">{{ order.user }}</span>
+          </div>
+          <div class="col-2 d-block fw-semibold">
+            Order Date
+            <span class="d-block fw-light">{{ order.createdAt | date }}</span>
+          </div>
+          <div class="col-2 d-block fw-semibold">
+            Order Summary
+            <span class="d-block fw-light"
+              >{{ order.orderItems.length }} Products</span
+            >
+          </div>
+          <div class="col-2 d-block fw-semibold">
+            Total
+            <span class="d-block fw-light">{{ order.total | currency }}</span>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-end">
+            <button
+              [routerLink]="['/admin/orders/', order.orderNo]"
+              type="button"
+              class="btn btn-warning"
+            >
+              Order Details
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row m-2 p-3 border rounded">
+          <div
+            class="col-6 d-flex align-items-center justify-content-start fw-medium"
+            style="color: #0bc15c"
+          >
+            Order Completed
+            <i class="bi bi-check2 fs-3 ms-2"></i>
+          </div>
+          <div class="col-6">
+            <img
+              *ngFor="let item of order.orderItems.slice(0, 5)"
+              [src]="item.product.imageUrl"
+              [routerLink]="['/product-detail', item.product.urlHandle]"
+              alt="product-image"
+              class="img-fluid img-thumbnail mx-1"
+            />
+            <span
+              *ngIf="order.orderItems.length > 5"
+              class="d-inline-block text-center align-middle ms-1"
+              style="font-size: 0.8rem"
+              >+1 <br />
+              Products</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mt-5 mx-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noOrders>
+  <div class="container my-5">
+    <div class="p-5 text-center rounded-3">
+      <svg
+        class="bi mt-4 mb-3"
+        style="color: var(--bs-indigo)"
+        width="100"
+        height="100"
+      >
+        <use xlink:href="#bootstrap" />
+      </svg>
+      <h1 class="text-body-emphasis">There is no order history &#9785;</h1>
+      <div class="d-inline-flex gap-2 mb-5 mt-4">
+        <button
+          [routerLink]="['/products']"
+          class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+          type="button"
+        >
+          Explore products
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ngx-spinner></ngx-spinner>

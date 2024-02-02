@@ -1,0 +1,225 @@
+<div class="margin">
+  <div *ngIf="order as order" class="container container-fluid mt-5">
+    <div class="row d-flex align-items-center border rounded p-3 mx-0">
+      <div class="col-3 text-start d-block">
+        <b>Order Details</b>
+      </div>
+      <div class="col-3 text-center d-block fw-semibold">
+        Order Date
+        <span class="d-block fw-light">{{ order.createdAt | date }}</span>
+      </div>
+      <div class="col-3 text-center d-block fw-semibold">
+        Order No
+        <span class="d-block fw-light">{{ order.orderNo }}</span>
+      </div>
+      <div class="col-3 text-center d-block fw-semibold">
+        Order Summary
+        <span class="d-block fw-light"
+          >{{ order.orderItems.length }} Products</span
+        >
+      </div>
+    </div>
+
+    <div class="card my-4">
+      <div class="card-header bg-body-tertiary">Order Items</div>
+      <div class="card-body">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div *ngFor="let item of order.orderItems" class="col">
+            <div class="card">
+              <div class="row p-3">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                  <img
+                    [routerLink]="['/product-detail', item.product.urlHandle]"
+                    [src]="item.product.imageUrl"
+                    class="img-fluid img-thumbnail"
+                    alt="product-image"
+                  />
+                </div>
+                <div class="col-sm-12 col-md-9 col-lg-9">
+                  <div class="card-body">
+                    <span class="d-block">{{ item.product.name }}</span>
+                    <span class="d-block text-muted">{{
+                      item.product.price | currency
+                    }}</span>
+                    <button
+                      (click)="productForEvaluate(item.product)"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#evaluate"
+                      class="btn btn-outline-warning mt-3"
+                    >
+                      Evaluate Product
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-6 mb-3">
+        <div class="card">
+          <div class="card-header bg-body-tertiary">Delivery Information</div>
+          <div class="card-body">
+            <p class="text-warning mb-2">Delivery Address</p>
+            <span class="d-block"
+              >{{ order.district.name | titlecase }},
+              {{ order.city.name | titlecase }}</span
+            >
+            <span class="d-block"
+              >{{ order.district.name | titlecase }} {{ order.zipCode }} /
+              {{ order.city.name | titlecase }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 mb-3">
+        <div class="card">
+          <div class="card-header bg-body-tertiary">Price Information</div>
+          <div class="card-body">
+            <p class="text-warning mb-2">Total</p>
+            <span class="d-block" *ngIf="order.total < 100"
+              ><span class="fw-semibold">Shipping</span>:
+              {{ 50 | currency }}</span
+            >
+            <span class="d-block" *ngIf="order.total > 100"
+              ><span class="fw-semibold">Shipping</span>: Free Shipping</span
+            >
+            <span class="d-block"
+              ><span class="fw-semibold">Total</span>:
+              {{ order.total | currency }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="evaluate" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Evaluate Product
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-4">
+            <img
+              [src]="evaluatedProduct?.imageUrl"
+              alt="product-image"
+              class="img-fluid img-thumbnail mb-3"
+            />
+          </div>
+          <div class="col-8 mt-4">
+            <b>{{ evaluatedProduct?.name }}</b>
+          </div>
+
+          <form #form="ngForm">
+            <div class="row mb-3">
+              <div class="col">
+                <div class="form-floating">
+                  <textarea
+                    [(ngModel)]="evaluate.content"
+                    name="content"
+                    [disabled]="alreadyEvaluated"
+                    class="form-control"
+                    placeholder="Leave a comment here"
+                    id="comment"
+                    style="height: 100px"
+                  ></textarea>
+                  <label for="comment">Comment</label>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="5"
+                      [disabled]="alreadyEvaluated"
+                      class="star star-5"
+                      id="star-5"
+                      type="radio"
+                      required
+                    />
+                    <label class="star star-5" for="star-5"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="4"
+                      [disabled]="alreadyEvaluated"
+                      class="star star-4"
+                      id="star-4"
+                      type="radio"
+                      required
+                    />
+                    <label class="star star-4" for="star-4"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      [value]="3"
+                      [disabled]="alreadyEvaluated"
+                      class="star star-3"
+                      id="star-3"
+                      type="radio"
+                      name="star"
+                      required
+                    />
+                    <label class="star star-3" for="star-3"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="2"
+                      [disabled]="alreadyEvaluated"
+                      class="star star-2"
+                      id="star-2"
+                      type="radio"
+                      required
+                    />
+                    <label class="star star-2" for="star-2"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="1"
+                      [disabled]="alreadyEvaluated"
+                      class="star star-1"
+                      id="star-1"
+                      type="radio"
+                      required
+                    />
+                    <label class="star star-1" for="star-1"></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button
+                      *ngIf="!alreadyEvaluated"
+                      (click)="onEvaluate()"
+                      data-bs-dismiss="modal"
+                      type="submit"
+                      class="btn btn-outline-warning"
+                    >
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

@@ -1,0 +1,124 @@
+<div class="margin">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill">{{
+            getNumberOfProducts()
+          }}</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li
+            *ngFor="let item of cartItems"
+            class="list-group-item d-flex justify-content-between lh-sm"
+          >
+            <div>
+              <h6 class="my-0 d-inline me-2">{{ item.product.name }}</h6>
+              <small class="text-body-secondary">({{ item.quantity }})</small>
+            </div>
+            <span class="text-body-secondary">{{
+              item.product.price * item.quantity | currency
+            }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong>{{ calculateTotal() | currency }}</strong>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Billing address</h4>
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="addressTitle" class="form-label">Address Title</label>
+              <input
+                [(ngModel)]="order.addressTitle"
+                name="addressTitle"
+                type="text"
+                class="form-control"
+                id="addressTitle"
+                placeholder="1234 Main St"
+              />
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Address</label>
+              <input
+                [(ngModel)]="order.address"
+                name="address"
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder="1234 Main St"
+                required
+              />
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="city" class="form-label">City</label>
+              <select
+                [(ngModel)]="order.city"
+                name="city"
+                class="form-select"
+                id="city"
+                (change)="onCityChange($event)"
+              >
+                <option selected disabled>Choose...</option>
+                <option *ngFor="let city of cities" [value]="city.id">
+                  {{ city.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label for="district" class="form-label">District</label>
+              <select
+                [(ngModel)]="order.district"
+                name="district"
+                class="form-select"
+                id="district"
+                [disabled]="!cityId"
+              >
+                <option selected>Choose...</option>
+                <option
+                  *ngFor="let district of districts"
+                  [value]="district.id"
+                >
+                  {{ district.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Zip</label>
+              <input
+                [(ngModel)]="order.zipCode"
+                name="zipCode"
+                type="text"
+                class="form-control"
+                id="zip"
+                placeholder=""
+                required
+              />
+              <div class="invalid-feedback">Zip code required.</div>
+            </div>
+          </div>
+
+          <button class="w-100 btn btn-primary btn-lg my-4" type="submit">
+            Complete Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

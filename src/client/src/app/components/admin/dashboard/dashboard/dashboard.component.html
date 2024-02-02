@@ -1,0 +1,191 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Dashboard</h3>
+    <div class="row mb-5">
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="card border shadow mb-3">
+          <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center">
+              <i class="bi bi-box-fill fs-1 ps-5"></i>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <div class="card-title fs-4 text-end">Count of Products</div>
+                <p class="card-text fs-1 text-end fw-semibold">
+                  {{ countOfProducts }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="card border shadow mb-3">
+          <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center">
+              <i class="bi bi-people-fill fs-1 ps-5"></i>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <div class="card-title fs-4 text-end">Count of Members</div>
+                <p class="card-text fs-1 text-end fw-semibold">
+                  {{ countOfMembers }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="card border shadow mb-3">
+          <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center">
+              <i class="bi bi-box2-fill fs-1 ps-5"></i>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <div class="card-title fs-4 text-end">Count of Orders</div>
+                <p class="card-text fs-1 text-end fw-semibold">
+                  {{ countOfOrders }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <div class="card border shadow mb-3">
+          <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center">
+              <i class="bi bi-envelope-plus-fill fs-1 ps-5"></i>
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <div class="card-title fs-4 text-end">Count of Subscribers</div>
+                <p class="card-text fs-1 text-end fw-semibold">
+                  {{ countOfSubscribers }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-sm-12 col-md-5 col-lg-5">
+        <div class="card shadow">
+          <h5 class="card-title pt-3 text-center text-decoration-underline">
+            Top Seller Products
+          </h5>
+          <div class="card-body">
+            <table class="table table-hover table-responsive">
+              <thead class="text-center">
+                <tr>
+                  <th></th>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr
+                  class="align-middle"
+                  *ngFor="let product of topSellerProducts"
+                >
+                  <td>
+                    <img
+                      [src]="product.imageUrl"
+                      [routerLink]="['/product-detail', product.urlHandle]"
+                      class="img-fluid"
+                    />
+                  </td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.category.name }}</td>
+                  <td>{{ product.price | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-7 col-lg-7">
+        <div class="card shadow">
+          <h5 class="card-title pt-3 text-center text-decoration-underline">
+            Latest Orders
+          </h5>
+          <div *ngFor="let order of orders$ | async" class="card mb-3 m-3">
+            <div class="card-header bg-body-tertiary">
+              <div class="row mx-2">
+                <div class="col-2 d-block fw-semibold">
+                  Member
+                  <span class="d-block fw-light">{{
+                    order.appUser.userName
+                  }}</span>
+                </div>
+                <div class="col-2 d-block fw-semibold">
+                  Order Date
+                  <span class="d-block fw-light">{{
+                    order.createdAt | date
+                  }}</span>
+                </div>
+                <div class="col-2 d-block fw-semibold">
+                  Order Summary
+                  <span class="d-block fw-light"
+                    >{{ order.orderItems.length }} Products</span
+                  >
+                </div>
+                <div class="col-2 d-block fw-semibold">
+                  Total
+                  <span class="d-block fw-light">{{
+                    order.total | currency
+                  }}</span>
+                </div>
+                <div
+                  class="col-4 d-flex align-items-center justify-content-end"
+                >
+                  <button
+                    [routerLink]="['/admin/orders/', order.orderNo]"
+                    type="button"
+                    class="btn btn-warning"
+                  >
+                    Order Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row m-2 p-3 border rounded">
+                <div
+                  class="col-6 d-flex align-items-center justify-content-start fw-medium"
+                  style="color: #0bc15c"
+                >
+                  Order Completed
+                  <i class="bi bi-check2 fs-3 ms-2"></i>
+                </div>
+                <div class="col-6">
+                  <img
+                    *ngFor="let item of order.orderItems.slice(0, 2)"
+                    [src]="item.product.imageUrl"
+                    [routerLink]="['/product-detail', item.product.urlHandle]"
+                    alt="product-image"
+                    class="img-fluid img-thumbnail mx-1"
+                  />
+                  <span
+                    *ngIf="order.orderItems.length > 2"
+                    class="d-inline-block text-center align-middle ms-1"
+                    style="font-size: 0.8rem"
+                    >+ {{ order.orderItems.length - 2 }} <br />
+                    Products</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

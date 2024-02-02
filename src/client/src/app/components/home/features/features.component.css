@@ -1,0 +1,17 @@
+#mobile-phones {
+  background-image: url("../../../../assets/feature-phone.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#laptops {
+  background-image: url("../../../../assets/feature-laptop.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#cases-covers {
+  background-image: url("../../../../assets/feature-accessories.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

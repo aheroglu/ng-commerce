@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "5ap1S4mf/FAFfSAsmJeGXLXID/Pig+9Lg73UP3bptdvji2Ip17WRzLZFteug2JQYWBm7rAXAAIWG6l+olBphVQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ahmet Hakan Eroğlu\\Desktop\\e-commerce\\src\\server\\DTO\\DTO.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ahmet Hakan Eroğlu\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Ahmet Hakan Eroğlu\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Ahmet Hakan Eroğlu\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+  ],
+  "logs": []
+}

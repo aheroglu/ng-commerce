@@ -1,0 +1,137 @@
+<div class="margin">
+  <div class="container mt-5">
+    <div class="row border rounded p-3 mx-0" style="margin-top: 100px">
+      <div class="col text-start d-block fs-4">My User Information</div>
+    </div>
+    <div class="row mt-3 mx-0 border rounded">
+      <div class="col-12 col-md-6 col-lg-6 border-end">
+        <span class="d-block my-3 px-2 fs-5 text-warning"
+          >User Information</span
+        >
+        <form
+          #form="ngForm"
+          (ngSubmit)="updateUserInformation()"
+          class="px-4 mt-4"
+        >
+          <div *ngIf="userInformation">
+            <div class="row mb-3">
+              <label for="username" class="form-label px-0">User Name</label>
+              <input
+                [(ngModel)]="userInformation.userName"
+                name="UserName"
+                type="text"
+                id="username"
+                class="form-control"
+                placeholder="Enter your user name"
+              />
+            </div>
+            <div class="row mb-3">
+              <label for="email" class="form-label px-0">Email</label>
+              <input
+                [(ngModel)]="userInformation.email"
+                name="Email"
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="row mb-3">
+              <label for="phone" class="form-label px-0">Phone Number</label>
+              <input
+                [(ngModel)]="userInformation.phoneNumber"
+                name="PhoneNumber"
+                type="text"
+                id="phone"
+                class="form-control"
+                placeholder="Enter your phone number"
+              />
+            </div>
+            <div class="form-check form-check-inline mb-3">
+              <input
+                [(ngModel)]="userInformation.gender"
+                name="Gender"
+                class="form-check-input"
+                type="radio"
+                id="male"
+                value="Male"
+              />
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline mb-3">
+              <input
+                [(ngModel)]="userInformation.gender"
+                name="Gender"
+                class="form-check-input"
+                type="radio"
+                id="female"
+                value="Female"
+              />
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="row mb-3">
+              <div class="d-grid gap-2 px-0">
+                <button type="submit" class="btn btn-success">Update</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6">
+        <span class="d-block my-3 px-2 fs-5 text-warning">Update Password</span>
+        <form
+          #form="ngForm"
+          (ngSubmit)="updateUserPassword()"
+          class="px-4 mt-4"
+        >
+          <div class="row mb-3">
+            <label for="currentPassword" class="form-label px-0"
+              >Current Password</label
+            >
+            <input
+              [(ngModel)]="userPassword.currentPassword"
+              name="CurrentPassword"
+              type="password"
+              id="currentPassword"
+              class="form-control"
+              placeholder="Enter your current password"
+            />
+          </div>
+          <div class="row mb-3">
+            <label for="newPassword" class="form-label px-0"
+              >New Password</label
+            >
+            <input
+              [(ngModel)]="userPassword.newPassword"
+              name="NewPassword"
+              type="password"
+              id="newPassword"
+              class="form-control"
+              placeholder="Enter your new password"
+            />
+          </div>
+          <div class="row mb-3">
+            <label for="confirmPassword" class="form-label px-0"
+              >Confirm New Password</label
+            >
+            <input
+              [(ngModel)]="userPassword.confirmPassword"
+              name="ConfirmPassword"
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              placeholder="Confirm your new password"
+            />
+          </div>
+          <div class="row mb-3">
+            <div class="d-grid gap-2 px-0">
+              <button type="submit" class="btn btn-success">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

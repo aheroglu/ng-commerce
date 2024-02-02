@@ -1,0 +1,65 @@
+<div class="container mb-5">
+  <div class="row featurette">
+    <div
+      class="col-md-7 order-md-2 d-flex align-items-center justify-content-center"
+    >
+      <div class="my-5">
+        <h2 class="featurette-heading fw-normal lh-1">Popular Laptops</h2>
+        <p class="lead my-3">Best seller laptop models</p>
+      </div>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <img
+        src="../../../../assets/popular-laptops.jpeg"
+        alt="popular-laptops"
+        class="img-fluid shadow-lg"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div *ngFor="let product of products" class="col">
+      <div class="card h-100 shadow">
+        <a style="cursor: pointer">
+          <img
+            [routerLink]="['/product-detail', product.urlHandle]"
+            [src]="product.imageUrl"
+            class="card-img-top img-fluid mh-100 p-3"
+            alt="product-image"
+          />
+        </a>
+        <div class="card-body d-flex flex-column">
+          <h5
+            [routerLink]="['/product-detail', product.urlHandle]"
+            class="card-title mt-auto"
+            style="cursor: pointer"
+          >
+            {{ product.name }}
+          </h5>
+        </div>
+        <div class="card-footer">
+          <div class="float-end">
+            <button
+              (click)="addToFavourites(product)"
+              type="button"
+              class="btn btn-danger rounded-circle mx-2 p-2 lh-1"
+            >
+              <i class="bi bi-heart-fill"></i>
+            </button>
+            <button
+              (click)="addToCart(product)"
+              type="button"
+              class="btn btn-primary rounded-circle p-2 lh-1"
+            >
+              <i class="bi bi-bag-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

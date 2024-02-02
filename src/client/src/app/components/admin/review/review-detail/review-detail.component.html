@@ -1,0 +1,63 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom px-0">Review Details</h3>
+    <ng-container *ngIf="review as review">
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <img
+            [src]="review.product.imageUrl"
+            alt="product image"
+            class="img-thumbnail img-fluid"
+          />
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="row g-2 mb-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="review.user"
+                  name="price"
+                  type="text"
+                  class="form-control form-control-lg"
+                  readonly
+                  id="price"
+                  placeholder="Price.."
+                />
+                <label for="price">Member</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input
+                  [(ngModel)]="review.rating"
+                  name="stockQuantity"
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="stockQuantity"
+                  readonly
+                  placeholder="Model.."
+                />
+                <label for="stockQuantity">Rating ?/5</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea
+              [(ngModel)]="review.content"
+              name="description"
+              class="form-control form-control-lg"
+              id="description"
+              placeholder="Description.."
+              rows="10"
+              style="height: 300px"
+              readonly
+            ></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

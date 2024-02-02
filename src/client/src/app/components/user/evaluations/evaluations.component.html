@@ -1,0 +1,207 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Evaluations</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <ng-container *ngIf="evaluations as evaluations; else noReviews">
+        <div
+          *ngFor="
+            let item of evaluations
+              | paginate : { itemsPerPage: 20, currentPage: p }
+          "
+          class="col"
+        >
+          <div class="card h-100">
+            <div class="dropdown text-end">
+              <i
+                class="bi bi-three-dots-vertical fs-5"
+                style="cursor: pointer"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
+              <ul class="dropdown-menu">
+                <li>
+                  <button
+                    (click)="getEvaluate(item.product)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editEvaluate"
+                    class="dropdown-item"
+                  >
+                    <i class="bi bi-pencil mx-1"></i> Edit
+                  </button>
+                </li>
+                <li>
+                  <button (click)="deleteEvalaute(item)" class="dropdown-item">
+                    <i class="bi bi-trash mx-1"></i> Delete
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="row p-3">
+              <div class="col-sm-12 col-md-3 col-lg-3">
+                <img
+                  [src]="item.product.imageUrl"
+                  [routerLink]="['/product-detail', item.product.urlHandle]"
+                  class="img-fluid img-thumbnail"
+                  alt="product-image"
+                />
+              </div>
+              <div class="col-sm-12 col-md-9 col-lg-9">
+                <div class="card-body">
+                  <span
+                    class="d-inline-block pb-1 mb-2 fw-bold border-bottom"
+                    >{{ item.product.name }}</span
+                  >
+                  <span class="d-block">{{ item.content }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="row">
+      <div class="col mt-5 mx-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noReviews>
+  <div class="container my-5">
+    <div class="p-5 text-center rounded-3">
+      <svg
+        class="bi mt-4 mb-3"
+        style="color: var(--bs-indigo)"
+        width="100"
+        height="100"
+      >
+        <use xlink:href="#bootstrap" />
+      </svg>
+      <h1 class="text-body-emphasis">There is no evaluations &#9785;</h1>
+      <div class="d-inline-flex gap-2 mb-5 mt-4">
+        <button
+          [routerLink]="['/orders']"
+          class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+          type="button"
+        >
+          Evalaute your some orders
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="modal fade" id="editEvaluate" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Evaluate Product
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-4">
+            <img
+              [src]="evaluatedProduct?.product.imageUrl"
+              alt="product-image"
+              class="img-fluid img-thumbnail mb-3"
+            />
+          </div>
+          <div class="col-8 mt-4">
+            <b>{{ evaluatedProduct?.product.name }}</b>
+          </div>
+
+          <form #form="ngForm">
+            <div class="row mb-3">
+              <div class="col">
+                <div class="form-floating">
+                  <textarea
+                    [(ngModel)]="evaluate.content"
+                    [value]="evaluate?.content"
+                    name="content"
+                    class="form-control"
+                    placeholder="Leave a comment here"
+                    id="comment"
+                    style="height: 100px"
+                  ></textarea>
+                  <label for="comment">Comment</label>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="5"
+                      class="star star-5"
+                      id="star-5"
+                      type="radio"
+                    />
+                    <label class="star star-5" for="star-5"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="4"
+                      class="star star-4"
+                      id="star-4"
+                      type="radio"
+                    />
+                    <label class="star star-4" for="star-4"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      [value]="3"
+                      class="star star-3"
+                      id="star-3"
+                      type="radio"
+                      name="star"
+                    />
+                    <label class="star star-3" for="star-3"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="2"
+                      class="star star-2"
+                      id="star-2"
+                      type="radio"
+                    />
+                    <label class="star star-2" for="star-2"></label>
+                    <input
+                      [(ngModel)]="evaluate.rating"
+                      name="rating"
+                      [value]="1"
+                      class="star star-1"
+                      id="star-1"
+                      type="radio"
+                    />
+                    <label class="star star-1" for="star-1"></label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button
+                      (click)="updateEvaluate()"
+                      data-bs-dismiss="modal"
+                      type="submit"
+                      class="btn btn-outline-warning"
+                    >
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

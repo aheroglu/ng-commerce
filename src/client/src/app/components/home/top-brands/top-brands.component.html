@@ -1,0 +1,71 @@
+<div class="container text-center pt-5">
+  <h2 class="display-4 text-center mb-4 fw-bold pb-2 d-inline-block">Top Brands</h2>
+  <div class="container h-100 mt-5">
+    <div class="row align-items-center h-100">
+      <div class="container rounded">
+        <div class="slider">
+          <div class="brands">
+            <ul>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-apple.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-samsung.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-xiaomi.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-huawei.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-hp.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-acer.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-sony.png" alt="brand" class="mx-5">
+              </li>
+            </ul>
+          </div>
+          <div class="brands">
+            <ul>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-apple.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-samsung.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-xiaomi.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-huawei.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-hp.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-acer.png" alt="brand" class="mx-5">
+              </li>
+              <li class="d-inline">
+                <img src="../../../../assets/brand-sony.png" alt="brand" class="mx-5">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slider = document.querySelector('.slider');
+  slider.addEventListener('animationiteration', () => {
+    slider.style.animation = 'none';
+    setTimeout(() => {
+      slider.style.animation = 'slidein 30s linear infinite';
+    }, 0);
+  });
+</script>

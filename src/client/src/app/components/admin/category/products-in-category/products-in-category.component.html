@@ -1,0 +1,66 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Products in Category</h3>
+    <div class="table-responsive">
+      <table
+        class="table table-hover table-borderless text-center align-middle"
+      >
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let product of products
+                | paginate : { itemsPerPage: 5, currentPage: p }
+            "
+          >
+            <td>
+              <img
+                [src]="product.imageUrl"
+                alt="product-image"
+                class="img-fluid"
+              />
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.model }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.stockQuantity }}</td>
+            <td>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn">
+                  <i class="bi bi-file-earmark-fill text-info fs-5"></i>
+                </button>
+                <button type="button" class="btn">
+                  <i class="bi bi-chat-left-text text-warning fs-5"></i>
+                </button>
+                <button type="button" class="btn">
+                  <i class="bi bi-pencil-square text-success fs-5"></i>
+                </button>
+                <button type="button" class="btn">
+                  <i class="bi bi-trash text-danger fs-5"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col mt-5 mx-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

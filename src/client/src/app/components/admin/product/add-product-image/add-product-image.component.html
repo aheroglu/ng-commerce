@@ -1,0 +1,35 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom px-0">Add Product</h3>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+      <div class="row mb-3">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="imageUrl"
+              name="imageUrl"
+              type="text"
+              class="form-control form-control-lg"
+              id="imageUrl"
+              placeholder="Image url.."
+            />
+            <label for="imageUrl">Image Url</label>
+          </div>
+          <div class="row mb-3">
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <label class="form-label mb-3">Image Preview:</label>
+          <img [src]="imageUrl" class="img-fluid" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

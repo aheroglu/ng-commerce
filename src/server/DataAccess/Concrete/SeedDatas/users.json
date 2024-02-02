@@ -1,0 +1,16 @@
+[
+  {
+    "UserName": "Ahmet Hakan Eroğlu",
+    "Email": "aheroglu@outlook.com",
+    "PhoneNumber": "555 555 55 55",
+    "CreatedAt": "2023-09-22T12:00:00Z",
+    "Gender": "Male"
+  },
+  {
+    "UserName": "User 1",
+    "Email": "ahmet20033134@gmail.com",
+    "PhoneNumber": "512 345 56 78",
+    "CreatedAt": "2023-09-22T12:00:00Z",
+    "Gender": "Female"
+  }
+]

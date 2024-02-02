@@ -1,0 +1,23 @@
+[
+  {
+    "Content": "I like it!",
+    "Rating": 5,
+    "CreatedAt": "2023-09-22T12:00:00Z",
+    "ProductId": 1,
+    "AppUserId": 2
+  },
+  {
+    "Content": "I like this phone!",
+    "Rating": 4,
+    "CreatedAt": "2023-09-22T12:00:00Z",
+    "ProductId": 5,
+    "AppUserId": 2
+  },
+  {
+    "Content": "Apple M1 chip is very fast!",
+    "Rating": 5,
+    "CreatedAt": "2023-09-22T12:00:00Z",
+    "ProductId": 6,
+    "AppUserId": 2
+  }
+]

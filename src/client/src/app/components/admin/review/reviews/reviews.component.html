@@ -1,0 +1,72 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Reviews</h3>
+    <div class="table-responsive">
+      <table
+        class="table table-hover table-borderless text-center align-middle"
+      >
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Member</th>
+            <th>Rating</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let review of reviews
+                | paginate : { itemsPerPage: 20, currentPage: p }
+            "
+          >
+            <td>
+              <img
+                [src]="review.product.imageUrl"
+                alt="product-image"
+                class="img-fluid"
+              />
+            </td>
+            <td>{{ review.product.name }}</td>
+            <td>{{ review.user }}</td>
+            <td>{{ review.rating }}</td>
+            <td>{{ review.createdAt | date }}</td>
+            <td>
+              <div class="btn-group" role="group">
+                <button
+                  [routerLink]="['/admin/reviews/', review.id]"
+                  type="button"
+                  class="btn"
+                >
+                  <i class="bi bi-file-earmark-fill text-info fs-5"></i>
+                </button>
+                <button
+                  [swal]="{
+                    title: 'Are You Sure?',
+                    text: 'Are you sure you want to delete this category?',
+                    icon: 'question',
+                    showCancelButton: true
+                  }"
+                  (confirm)="deleteReview(review)"
+                  type="button"
+                  class="btn"
+                >
+                  <i class="bi bi-trash text-danger fs-5"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col mt-5 mx-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

@@ -1,0 +1,56 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom">Members</h3>
+    <div class="table-responsive">
+      <table
+        class="table table-hover table-borderless text-center align-middle"
+      >
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let member of members
+                | paginate : { itemsPerPage: 20, currentPage: p }
+            "
+          >
+            <td>{{ member.userName }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.phoneNumber }}</td>
+            <td>
+              <div class="btn-group" role="group">
+                <button
+                  [swal]="{
+                    title: 'Are You Sure?',
+                    text: 'Are you sure you want to delete this category?',
+                    icon: 'question',
+                    showCancelButton: true
+                  }"
+                  (confirm)="deleteMember(member.email)"
+                  type="button"
+                  class="btn"
+                  title="Delete"
+                >
+                  <i class="bi bi-trash text-danger fs-5"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col mt-5 mx-5">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>

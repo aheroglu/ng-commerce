@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "DbGvgdgLqwU7UG7jAdzaLs8xtKJTc88WMYY13Eepb3c=",
+  "Source": "API",
+  "BasePath": "_content/API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "API\\wwwroot",
+      "Source": "API",
+      "ContentRoot": "C:\\Users\\Ahmet Hakan Eroğlu\\Desktop\\e-commerce\\src\\server\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Ahmet Hakan Eroğlu\\Desktop\\e-commerce\\src\\server\\API\\wwwroot\\img\\defaults\\default-product.jpg",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ahmet Hakan Eroğlu\\Desktop\\e-commerce\\src\\server\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "img/defaults/default-product.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\defaults\\default-product.jpg"
+    }
+  ]
+}

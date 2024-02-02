@@ -1,0 +1,146 @@
+<div class="margin">
+  <div class="container mt-5">
+    <h3 class="mb-5 p-3 border-bottom px-0">Add Product</h3>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="model.name"
+          name="name"
+          (keyup)="updateUrlHandle()"
+          (blur)="updateUrlHandle()"
+          type="text"
+          class="form-control form-control-lg"
+          id="name"
+          placeholder="Product name.."
+        />
+        <label for="name">Product Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="model.urlHandle"
+          name="urlHandle"
+          type="text"
+          class="form-control form-control-lg"
+          id="urlHandle"
+          placeholder="Product url handle.."
+          readonly
+        />
+        <label for="imageUrl">Product Url Handle</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="model.imageUrl"
+          name="imageUrl"
+          type="text"
+          class="form-control form-control-lg"
+          id="imageUrl"
+          placeholder="Product image url.."
+        />
+        <label for="imageUrl">Product Image Url</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select
+          name="category"
+          [(ngModel)]="model.categoryId"
+          class="form-select"
+          id="category"
+        >
+          <option disabled selected>Open this select menu</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+        <label for="category">Category</label>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              [(ngModel)]="model.brand"
+              name="brand"
+              type="text"
+              class="form-control form-control-lg"
+              id="brand"
+              placeholder="Brand.."
+            />
+            <label for="brand">Brand</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              [(ngModel)]="model.model"
+              name="model"
+              type="text"
+              class="form-control form-control-lg"
+              id="model"
+              placeholder="Model.."
+            />
+            <label for="model">Model</label>
+          </div>
+        </div>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              [(ngModel)]="model.price"
+              name="price"
+              type="text"
+              class="form-control form-control-lg"
+              id="price"
+              placeholder="Price.."
+            />
+            <label for="price">Price</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input
+              [(ngModel)]="model.stockQuantity"
+              name="stockQuantity"
+              type="text"
+              class="form-control form-control-lg"
+              id="stockQuantity"
+              placeholder="Model.."
+            />
+            <label for="stockQuantity">Stock Quantity</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          [(ngModel)]="model.shortDescription"
+          name="shortDescription"
+          class="form-control form-control-lg"
+          id="description"
+          placeholder="Short description.."
+          rows="3"
+          style="height: 100px"
+        ></textarea>
+        <label for="shortDescription">Short Description</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          [(ngModel)]="model.description"
+          name="description"
+          class="form-control form-control-lg"
+          id="description"
+          placeholder="Description.."
+          rows="10"
+          style="height: 300px"
+        ></textarea>
+        <label for="description">Description</label>
+      </div>
+      <div class="row mb-3">
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner></ngx-spinner>
